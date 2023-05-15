@@ -59,11 +59,17 @@ stringToDisplay=stringToDisplay.slice(0,-1);
 }
 
 }
+if (clickedButton==="."){
+    console.log("clicked")
+
+  
+}
 if (clickedButton==="="){
     const lastCharacter= stringToDisplay.slice(-1);
 
     if (operators.includes(lastCharacter)){
         stringToDisplay=stringToDisplay.slice(0,-1);
+        
     }
 return displayTotal(stringToDisplay);
 }
@@ -93,9 +99,9 @@ displayResult(totalValue)
 
 }
 
-const sendRandom =() => {
-   let randomNumber=math.round( math.sendRandom()*10)
-//    if (randomNumber < 3){
+ const sendRandom = () => {
+   let randomNumber= Math.round( Math.random()*10)
+//    if (randomNumber < 3)
 //     return randomNumber
 //    }
 //    else{
@@ -104,4 +110,4 @@ const sendRandom =() => {
 return randomNumber < 3 ? randomNumber : 0
 }
 
-sendRandom();
+sendRandom(); 
