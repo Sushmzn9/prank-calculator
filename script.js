@@ -1,20 +1,4 @@
-/*HINTS FOR CALCULATOR 
 
-1. GRAB ALL THE BUTTONS FIRST
-
-
-
-2. GRAB THE DISPLAY ELEMENT and make display element as 0(zero)
-3. LOOP THROUGH ALL THE BUTTONS 
-4. ADD CLICK EVENT LISTNER TO THE BUTTON (inside the lopp)
-5. GET THE CONTENT OF THE BUTTON and CHECK WHAT BUTTON IS BEING PRESSED
-6. EX: IF USER PRESSED THE AC BUTTON, CLEAR THE CONTENT OF THE DISPLAY
-7. EX: IF USER PRESSED THE DEL BUTTON, REMOVE THE LAST CHARACTER FROM THE DISPLAY TEXT
-8. TRICKY: TO CONTROL THE POINT AND EQUALS TO OPERATOR 
-9. CREATE A FUNCTION THAT CALCULATES THE TOTAL VALUE OF THE OPERATION
-10. CREATE A FUNCTION THAT HANDLES THE DISPLAY OF THE ELEMENT ON THE SCREEN
-
-*/
 
 
 const btns =document.querySelectorAll(".btn");
@@ -59,11 +43,21 @@ stringToDisplay=stringToDisplay.slice(0,-1);
 }
 
 }
-if (clickedButton==="."){
-    console.log("clicked")
-
+if (clickedButton === ".") {
+    const indexOflastOperator = stringToDisplay.lastIndexOf(latestOperator);
+    const lastNumberSet = stringToDisplay.slice(indexOflastOperator);
   
-}
+    if (lastNumberSet.includes(".")) {
+      return;
+    }
+  
+    if (!latestOperator && stringToDisplay.includes(".")) {
+      return;
+    }
+  
+    displayResult(stringToDisplay); // Update display after adding decimal point
+  }
+  
 if (clickedButton==="="){
     const lastCharacter= stringToDisplay.slice(-1);
 
@@ -74,11 +68,11 @@ if (clickedButton==="="){
 return displayTotal(stringToDisplay);
 }
 
-stringToDisplay=stringToDisplay+clickedButton;
+stringToDisplay+=clickedButton;
 displayResult(stringToDisplay);
-    })
+    });
     
-})
+});
 
 const displayResult =(value)=>{
     displayElem.innerText = value || "0"
